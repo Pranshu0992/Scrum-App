@@ -1,12 +1,15 @@
-from rest_framework import serializers 
+from rest_framework import serializers
 
 from .models import List, Card
 
-class ListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = List
 
-class CardSerializer(serializers.ModelSerializer):
+class ListSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = List 
+
+
+
+class CardSerializers(serializers.ModelSerializer):
     class Meta:
         model = Card
 
