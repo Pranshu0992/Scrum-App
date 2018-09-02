@@ -1,44 +1,25 @@
 (function(){
+    'use strict';
     angular.module('scrumboard.demo', [])
-    .controller('ScrumboardController', ['$scope', ScrumboardController])
+    .controller('ScrumboardController', ['$scope','$http', ScrumboardController]);
 
-    function ScrumboardController($scope){
-        $scope.data = [
-            {
-                name: 'Django Demo',
-                cards: [
-                    {
-                        title: 'Create a Model'
-                    },
-                    {
-                        title: 'Create Serializers and API'
-                    }, 
-                    {
-                        title: 'Make Migrations'
-
-                    }
-                ]
-            }, 
-            {
-                name: 'Angular Demo',
-                cards: [
-                    {
-                        title: 'Create HTML'
-                    }, 
-                    {
-                        title: 'Add JavaScript code'
-                    },
-                    {
-                        title: 'Use REST Framework'
-                    }
-                ]
-            }
-        ]
+    function ScrumboardController($scope, $http){
         $scope.add = function(list, title){
             var card = {
+                list: list.id,
                 title: title
-            }
-            list.cards.push(card)
-        }
-    }
-}())
+            };
+            $http.post('/scrumboard/card/', card)
+            .then(function(response){
+                list.cards.push(response.data);
+            }, 
+            function (){
+                alert('Could not create card');
+            })
+        };
+        $scope.data = []
+        $http.get('/scrumboard/lists').then(function(response){
+            $scope.data = response.data;
+        });
+    };
+}());
