@@ -12,10 +12,9 @@
             $http.post('/scrumboard/card/', card)
             .then(function(response){
                 list.cards.push(response.data);
-            }, 
-            function (){
-                alert('Could not create card');
-            })
+            },function(){
+                alert('Can not create card');
+            });
         };
         $scope.data = []
         $http.get('/scrumboard/lists').then(function(response){
