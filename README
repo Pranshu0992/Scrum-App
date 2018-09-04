@@ -1,5 +1,5 @@
 ### Digital Scrum App to add/edit and delete tasks ###
 
-Backend: Django 
-FrontEnd: AngularJS 
-REST Framework
+Backend: Django, Python
+FrontEnd: AngularJS, JavaScript, HTML, CSS
+Django REST Framework
